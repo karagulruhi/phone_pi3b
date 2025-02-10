@@ -1,12 +1,7 @@
-import cv2
-import numpy as np
-import tflite_runtime.interpreter as tflite
-from tflite_runtime.interpreter import Interpreter
+from ultralytics import YOLO
 
+# Load the YOLO11 model
+model = YOLO("yolo11n.pt")
 
-# iPhone Kamera URL'si
-stream_url = "http://192.168.1.3:4747/video"
-# TFLite modelini yükle
-# TFLite modelini yükle
-interpreter =tflite.Interpreter(model_path="yolov8n_float16.tflite")
-interpreter.allocate_tensors()
+# Export to NCNN format
+model.export(format="ncnn")  # creates '/yolo11n_ncnn_model'
